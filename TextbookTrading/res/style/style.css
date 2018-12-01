@@ -1,16 +1,22 @@
 /* https://insiders.liveshare.vsengsaas.visualstudio.com/join?97387548C20389430C36A7C5C6F9AC380013 */
 #title {
   text-align: center;
-  
 }
 #title a:any-link {
-  color: brown;
+  color: yellow;
   text-decoration: none;
+}
+div table {
+  display: inline;
+}
+div table tr th{
+  padding: 70px;
 }
 #logo {
   float: left;
 }
-#login, #logout {
+#login, .logout {
+  padding: 2px;
   float: right;
 }
 input.search {
@@ -21,14 +27,29 @@ input.search {
 button.search {
   padding: 10px;
   background-color: lightblue;
-  border: 1px black solid;
+  border: 1px yellow solid;
   border-radius: 0px;
 }
 a:hover {
  
   cursor: pointer;
 
-  background-color: yellow;
+  background-color: darkred;
 
 }
+
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #ae0001, #d3a625);
+  font: 14px/20px "Lato", Arial, sans-serif;
+  color: white;
+}
+
+
+
 

@@ -14,21 +14,21 @@ if (isset($_POST['login']) && !empty($_POST['email'])
         $password = $_POST['current-password'];
         require './connect.php';
         $sql = $conn->stmt_init();
-        $sql->prepare("SELECT emailAddress FROM users WHERE emailAddress IN (?)");
+        $sql->prepare("SELECT email FROM person WHERE email IN (?)");
         $sql->bind_param('s', $user);
         $sql->execute();
         $accounts = $sql->get_result();
         if ($accounts!=NULL) {
             if ($accounts->num_rows > 0) {
-                if ($user == $accounts->fetch_assoc()['emailAddress']) {
+                if ($user == $accounts->fetch_assoc()['email']) {
                     $sql = $conn->stmt_init();
-                    $sql->prepare("SELECT userPassword FROM users WHERE emailAddress IN (?)");
+                    $sql->prepare("SELECT PassW FROM person WHERE email IN (?)");
                     $sql->bind_param('s', $user);
                     $sql->execute();
                     $pass = $sql->get_result();
                     if ($pass != NULL) {
                         if ($pass->num_rows > 0) {
-                            if (password_verify($password, $pass->fetch_assoc()['userPassword'])) {
+                            if (password_verify($password, $pass->fetch_assoc()['PassW'])) {
                                 setcookie("loggedIn", 1, 0,'/');
                                 $conn->close();
                                 header("Location: ./index.php");
@@ -43,7 +43,7 @@ if (isset($_POST['login']) && !empty($_POST['email'])
 } else if (isset($_POST['register']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['pass'])) {
     require './connect.php';
     $stmt = $conn->stmt_init();
-    $stmt->prepare('SELECT emailAddress FROM users WHERE emailAddress=?');
+    $stmt->prepare('SELECT email FROM person WHERE email=?');
     $stmt->bind_param('s', $_POST['email']);
     $stmt->execute();
     $results = $stmt->get_result();
@@ -52,15 +52,15 @@ if (isset($_POST['login']) && !empty($_POST['email'])
         if ($results->num_rows==0)
         {
             $stmt = $conn->stmt_init();
-            $stmt->prepare('INSERT INTO users (userName, userPassword,
-                emailAddress) VALUES(? ,?, ?)');
+            $stmt->prepare('INSERT INTO person (UserName, PassW,
+                email) VALUES(? ,?, ?)');
             $pass = password_hash($_POST['pass'], PASSWORD_BCRYPT);
             $stmt->bind_param("sss", $_POST['name'],
                 $pass, $_POST['email']);
             $stmt->execute();
             
-        setcookie("loggedIn", 1, 0,'/');
-        header('Location: ./index.php');
+            setcookie("loggedIn", 1, 0,'/');
+            header('Location: ./index.php');
         }
         else {
             $msg ='There is already an account associated with that email.';

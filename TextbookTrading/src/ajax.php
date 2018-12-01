@@ -1,4 +1,4 @@
-<?php
+<?php //2117
  
 //Including Database configuration file.
  
@@ -40,9 +40,8 @@ if (isset($_POST['search'])) {
  
         By passing fetched result as parameter. -->
  
-   <li onclick='fill("<?php echo $Result['Name']; ?>")'>
- 
-   <a>
+   <li>
+   <a href="./textbookList.php?class=<?=$Result['Name']?>">
  
    <!-- Assigning searched result in "Search box" in "search.php" file. -->
  

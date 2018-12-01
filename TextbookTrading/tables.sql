@@ -1,7 +1,13 @@
+drop database if exists umdlocalhackday2;
+create database if not exists umdlocalhackday2;
+
+use umdlocalhackday2;
+
 CREATE TABLE Person (
-	UserID int PRIMARY KEY auto_increment,
+	UserID INT PRIMARY KEY auto_increment,
     Email VARCHAR(100) NOT NULL UNIQUE,
     PassW CHAR(60) NOT NULL,
+    UserName VARCHAR(30) NOT NULL,
     Department1 VARCHAR(4) DEFAULT NULL,
     Department2 VARCHAR(4) DEFAULT NULL,
     Department3 VARCHAR(4) DEFAULT NULL,
@@ -9,15 +15,18 @@ CREATE TABLE Person (
 );
 CREATE TABLE Courses (
 	Department VARCHAR(4) NOT NULL,
-    CourseKey VARCHAR(4) PRIMARY KEY,
-    Textbook VARCHAR(255) DEFAULT NULL,
-    FOREIGN KEY (Textbook) REFERENCES Textbook (Title)
+    CourseKey VARCHAR(4),
+    course int(10) not null,
+    Primary Key (Department, CourseKey)
 );
+CREate index course on courses(course);
+
 CREATE Table Textbook (
 	Title VARCHAR(255) PRIMARY KEY,
     Author VARCHAR(100) NOT NULL,
     Version DOUBLE NOT NULL,
-    CourseNeed VARCHAR(10) NOT NULL
+    course int(10) NOT NULL,
+	FOREIGN KEY (course) REFERENCES Courses (course)
 );
 CREATE TABLE Inventory (
 	Title VARCHAR(255) NOT NULL,
@@ -28,5 +37,4 @@ CREATE TABLE Inventory (
     FOREIGN KEY (Seller) REFERENCES Person(UserID)
 );
 
-
-	
+select * from person;

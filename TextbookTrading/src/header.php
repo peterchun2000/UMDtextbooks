@@ -13,12 +13,14 @@ $title = "Textbook Trading Website";
     <title><?=$title?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../res/style/style.css"/>
+    
 </head>
 <body>
 <div id="header">
     <img id="logo" src="../res/img/logo.png" width=49   px alt="Textbook Trading Logo">
     <?php if ($_COOKIE['loggedIn']) {?>
-        <a id="logout" href="logout.php">Logout</a>
+        <a class="logout" href="messaging.php">Messages </a>
+        <a class="logout" href="logout.php">Logout</a>
     <?php } else {?>
         <a id="login" href="login.php">Login/Register</a>
     <?php }?>
@@ -42,11 +44,6 @@ $title = "Textbook Trading Website";
          <!-- Search box. -->
   
         <input type="text" id="search" placeholder="Search" />
-
-        <br>
-
-        <b>Ex: </b><i>Math140, engl101, first edition</i>
-
         <br>
 
         </div>
@@ -56,5 +53,5 @@ $title = "Textbook Trading Website";
         <?php }?>
 </div>
 
-<p data-height="265" data-theme-id="0" data-slug-hash="oQmpxB" data-default-tab="js,result" data-user="peter2000" data-pen-title="Daily UI #013: Direct Messaging" class="codepen">See the Pen <a href="https://codepen.io/peter2000/pen/oQmpxB/">Daily UI #013: Direct Messaging</a> by peter (<a href="https://codepen.io/peter2000">@peter2000</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+

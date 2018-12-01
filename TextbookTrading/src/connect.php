@@ -6,7 +6,7 @@
  **/
 $servername = "localhost";
 $username = "root";
-$dbname = "umdlocalhackday";
+$dbname = "umdlocalhackday2";
 
 // Create connection
 $conn = new mysqli($servername, $username, /*$password*/NULL, $dbname);
