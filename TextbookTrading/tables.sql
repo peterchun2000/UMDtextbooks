@@ -24,17 +24,20 @@ CREate index course on courses(course);
 CREATE Table Textbook (
 	Title VARCHAR(255) PRIMARY KEY,
     Author VARCHAR(100) NOT NULL,
-    Version DOUBLE NOT NULL,
     course int(10) NOT NULL,
 	FOREIGN KEY (course) REFERENCES Courses (course)
 );
 CREATE TABLE Inventory (
-	Title VARCHAR(255) NOT NULL,
+	Title VARCHAR(255) NOT NULL ,
     Price DOUBLE NOT NULL,
     Wear VARCHAR(10) NOT NULL,
     Comments VARCHAR(255) DEFAULT NULL,
     Seller INT,
-    FOREIGN KEY (Seller) REFERENCES Person(UserID)
+    FOREIGN KEY (Seller) REFERENCES Person(UserID),
+    FOREIGN KEY (title) REFERENCES Textbook(Title)
 );
 
-select * from person;
+insert courses values ("MATH",141,1), ("CMSC", 132, 2);
+insert textbook values
+("Calculus with concepts","Robert Ellis",1),
+("Calculus with concepts edition 2","Robert Ellis II",1), ("Abstract Java","Nelson Paula-Perez",2);

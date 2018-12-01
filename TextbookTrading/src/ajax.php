@@ -2,8 +2,18 @@
  
 //Including Database configuration file.
  
-include "db.php";
- 
+$con = MySQLi_connect(	
+ 	
+   "localhost", //Server host name.	
+ 	
+   "root", //Database username.	
+ 	
+   "", //Database password.	
+ 	
+   "umdlocalhackday2"//Database name or anything you would like to call it.	
+ 	
+);
+
 //Getting value of "search" variable from "script.js".
  
 if (isset($_POST['search'])) {
@@ -14,7 +24,7 @@ if (isset($_POST['search'])) {
  
 //Search query.
  
-   $Query = "SELECT Name FROM search WHERE Name LIKE '%$Name%' LIMIT 5";
+   $Query = "SELECT department, coursekey FROM courses WHERE department LIKE '%$Name%' OR coursekey LIKE '%$Name%' LIMIT 5";
  
 //Query execution
  
@@ -41,11 +51,11 @@ if (isset($_POST['search'])) {
         By passing fetched result as parameter. -->
  
    <li>
-   <a href="./textbookList.php?class=<?=$Result['Name']?>">
+   <a href="./textbookList.php?class=<?=$Result['department'].$Result['coursekey']?>">
  
    <!-- Assigning searched result in "Search box" in "search.php" file. -->
  
-       <?php echo $Result['Name']; ?>
+       <?php echo $Result['department'].$Result['coursekey']; ?>
  
    </li></a>
  

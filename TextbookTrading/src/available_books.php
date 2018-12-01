@@ -6,21 +6,17 @@
 include './header.php';
 require './connect.php';
 
-// Create connection
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+$stmt = $conn->stmt_init();
 
-$sql = "SELECT Textbook FROM Courses WHERE Department IN (?) AND CourseKey IN (?)";
-$result = $conn->query($sql);
+$stmt -> prepare("SELECT * FROM Inventory Where Title in (?)");
+$stmt -> bind_param("s",$_GET["book"]);
+$stmt -> execute();
+$result = $stmt -> get_result();
 
 if ($result->num_rows > 0) {
-    // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "<br> id: ". $row["id"]. " - Name: ". $row["firstname"]. " " . $row["lastname"] . "<br>";
+        echo "<br> Name: ". $row["title"]. " $" . $row["price"] . "<br>";
     }
 } else {
     echo "0 results";
