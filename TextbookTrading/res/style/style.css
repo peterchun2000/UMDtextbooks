@@ -1,6 +1,11 @@
 /* https://insiders.liveshare.vsengsaas.visualstudio.com/join?97387548C20389430C36A7C5C6F9AC380013 */
 #title {
   text-align: center;
+  
+}
+#title a:any-link {
+  color: brown;
+  text-decoration: none;
 }
 #logo {
   float: left;
@@ -8,7 +13,6 @@
 #login, #logout {
   float: right;
 }
-
 input.search {
   border: 1px black solid;
   padding: 10px;
@@ -27,3 +31,4 @@ a:hover {
   background-color: yellow;
 
 }
+

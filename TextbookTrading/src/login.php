@@ -8,19 +8,64 @@ require './header.php';
 <?php
 $msg = '';
 
-if (isset($_POST['login']) && !empty($_POST['username'])
-    && !empty($_POST['password'])) {
-
-    if ($_POST['username'] == 'test' &&
-        $_POST['password'] == 'test') {
-        $_SESSION['loggedIn'] = true;
+if (isset($_POST['login']) && !empty($_POST['email'])
+    && !empty($_POST['current-password'])) {
+        $user = $_POST['email'];
+        $password = $_POST['current-password'];
+        require './connect.php';
+        $sql = $conn->stmt_init();
+        $sql->prepare("SELECT emailAddress FROM users WHERE emailAddress IN (?)");
+        $sql->bind_param('s', $user);
+        $sql->execute();
+        $accounts = $sql->get_result();
+        if ($accounts!=NULL) {
+            if ($accounts->num_rows > 0) {
+                if ($user == $accounts->fetch_assoc()['emailAddress']) {
+                    $sql = $conn->stmt_init();
+                    $sql->prepare("SELECT userPassword FROM users WHERE emailAddress IN (?)");
+                    $sql->bind_param('s', $user);
+                    $sql->execute();
+                    $pass = $sql->get_result();
+                    if ($pass != NULL) {
+                        if ($pass->num_rows > 0) {
+                            if (password_verify($password, $pass->fetch_assoc()['userPassword'])) {
+                                setcookie("loggedIn", 1, 0,'/');
+                                $conn->close();
+                                header("Location: ./index.php");
+                                exit;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        $msg = "Incorrect email or password";
+} else if (isset($_POST['register']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['pass'])) {
+    require './connect.php';
+    $stmt = $conn->stmt_init();
+    $stmt->prepare('SELECT emailAddress FROM users WHERE emailAddress=?');
+    $stmt->bind_param('s', $_POST['email']);
+    $stmt->execute();
+    $results = $stmt->get_result();
+    if ($results!=NULL)
+    {
+        if ($results->num_rows==0)
+        {
+            $stmt = $conn->stmt_init();
+            $stmt->prepare('INSERT INTO users (userName, userPassword,
+                emailAddress) VALUES(? ,?, ?)');
+            $pass = password_hash($_POST['pass'], PASSWORD_BCRYPT);
+            $stmt->bind_param("sss", $_POST['name'],
+                $pass, $_POST['email']);
+            $stmt->execute();
+            
         setcookie("loggedIn", 1, 0,'/');
         header('Location: ./index.php');
-    } else {
-        $msg = 'Wrong username or password';
+        }
+        else {
+            $msg ='There is already an account associated with that email.';
+        }
     }
-} else if (isset($_POST['register']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password'])) {
-    
 }
 ?>
       </div> <!-- /container -->
@@ -31,11 +76,11 @@ if (isset($_POST['login']) && !empty($_POST['username'])
             action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);
 ?>" method = "post">
             <h4 class = "form-signin-heading"><?=$msg?></h4>
-            <input type = "text" class = "form-control"
-               name = "username" placeholder = "username = tutorialspoint"
+            <input type = "email" class = "form-control"
+               name = "email" placeholder = "Email:"
                required autofocus><br>
             <input type = "password" class = "form-control"
-               name = "password" placeholder = "password = 1234" required><br>
+               name = "current-password" placeholder = "Password:" required><br>
             <button class = "btn btn-lg btn-primary btn-block" type = "submit"
                name = "login">Login</button>
          </form>
@@ -43,11 +88,11 @@ if (isset($_POST['login']) && !empty($_POST['username'])
 </div>
 <div style='width:50%; float:right;'>
     <h2>Register New Account</h2>
-    <form action="./register.php" method="post">
-        <input type="email" name= "email" id="email" placeholder="Email:" required><br>
-        <input type="text" name="name" id="name" placeholder="Name:" required><br>
-        <input type="password" name="pass" id="pass" placeholder="Password:" required><br>
-        <input type="submit" value="register" name="register" id="register">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+        <label for="email">Email: </label><input type="email" name= "email" id="email" required><br>
+        <label for="name">Name: </label><input type="text" name="name" id="name" required><br>
+        <label for="pass">Password: </label><input type="password" name="pass" id="pass" required><br>
+        <input type="submit" value="Register" name="register" id="register">
     </form>
 </div>
 <?php
