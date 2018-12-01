@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_COOKIE['loggedIn'])) {
+    setcookie('loggedIn', 0, 0, '/');
+}
 $title = "Textbook Trading Website";
 ?>
 <!DOCTYPE html>
@@ -13,7 +17,17 @@ $title = "Textbook Trading Website";
 </head>
 <body>
 <div id="header">
-    <img id="logo" src="../res/img/logo.png" width=50px alt="Textbook Trading Logo">
-    <span id="title"><?=$title?></span>
+    <img id="logo" src="../res/img/logo.png" width=75px alt="Textbook Trading Logo">
+    <?php if ($_COOKIE['loggedIn']) {?>
+        <a id="logout" href="logout.php">Logout</a>
+    <?php } else {?>
+        <a id="login" href="login.php">Login/Register</a>
+    <?php }?>
+    <div id="title"><h1><?=$title?></h1></div>
 </div>
-<form action="/youpage.php"> <input type="text" placeholder="Search.." name="search" class="search"> <button type="submit" class="search"><i class="fa fa-search"></i></button> </form>
+<form action="/youpage.php">
+    <input type="text" placeholder="Search.." name="search" class="search">
+    <button type="submit" class="search">
+        <i class="fa fa-search"></i>
+    </button>
+</form>
