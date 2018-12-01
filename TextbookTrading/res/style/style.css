@@ -1,4 +1,15 @@
-/* https://insiders.liveshare.vsengsaas.visualstudio.com/join?D6DF1C6B7D386495FCBC51FC69B73B4CEC44 */
+/* https://insiders.liveshare.vsengsaas.visualstudio.com/join?97387548C20389430C36A7C5C6F9AC380013 */
 #title {
-
+  clear: both;
+}
+input.search {
+  border: 1px black solid;
+  padding: 10px;
+  border-radius: 0px;
+}
+button.search {
+  padding: 10px;
+  background-color: lightblue;
+  border: 1px black solid;
+  border-radius: 0px;
 }
