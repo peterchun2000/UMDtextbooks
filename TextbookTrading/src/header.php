@@ -12,6 +12,6 @@ $title="Textbook Trading Website";
 </head>
 <body>
 <div id="header">
-    <img id="logo" src="logo.png" alt="Textbook Trading Logo">
+    <img id="logo" src="../res/img/logo.png" width=50px alt="Textbook Trading Logo">
     <span id="title"><?=$title?></span>
 </div>
