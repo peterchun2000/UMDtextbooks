@@ -1,8 +1,3 @@
-drop database if exists umdlocalhackday2;
-create database if not exists umdlocalhackday2;
-
-use umdlocalhackday2;
-
 CREATE TABLE Person (
 	UserID INT PRIMARY KEY auto_increment,
     Email VARCHAR(100) NOT NULL UNIQUE,
@@ -26,6 +21,7 @@ CREATE Table Textbook (
     Author VARCHAR(100) NOT NULL,
     course int(10) NOT NULL,
     picture BLOB,
+    pictureType VARCHAR(60),
 	FOREIGN KEY (course) REFERENCES Courses (course)
 );
 CREATE TABLE Inventory (
