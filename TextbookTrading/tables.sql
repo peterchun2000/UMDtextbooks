@@ -19,7 +19,8 @@ CREATE TABLE Courses (
     course int(10) not null,
     Primary Key (Department, CourseKey)
 );
-CREate index course on courses(course);
+
+create index course on courses(course);
 
 CREATE Table Textbook (
 	Title VARCHAR(255) PRIMARY KEY,

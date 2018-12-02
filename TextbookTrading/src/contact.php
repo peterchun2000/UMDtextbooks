@@ -1,11 +1,7 @@
-<html>
- <head>
-  <title>Contact US!</title>
- </head>
- <body>
+<?php include 'header.php' ?>
 
 <h1>CONTACT US</h1>
- <?php echo '<p>Peter Chun | Johnny Chiu | Adam Rozem</p>'; ?> 
+ <?php echo '<p>Peter Chun | Johnny Chiu | Adam Rozen</p>'; ?> 
  <p>Reach us at: 911-202-101</p>
 
  <form action="/action_page.php">
@@ -14,5 +10,4 @@
   <input type="submit" value="Submit">
 </form>
 
- </body>
-</html>
+<?php include 'footer.php'?>

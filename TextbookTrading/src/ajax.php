@@ -50,7 +50,7 @@ if (isset($_POST['search'])) {
  
         By passing fetched result as parameter. -->
  
-   <li>
+   <li style="float:right;clear:both;" onclick="hide()">
    <a href="./textbookList.php?class=<?=$Result['department'].$Result['coursekey']?>">
  
    <!-- Assigning searched result in "Search box" in "search.php" file. -->
