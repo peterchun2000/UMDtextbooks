@@ -6,5 +6,5 @@ INSERT INTO Textbook (Title, Author, course) VALUES('Froggers','Mr.Pepe','1');
 INSERT INTO Textbook (Title, Author, course) VALUES('Secrets To Memes','Ms.Pepe','5');
 INSERT INTO Textbook (Title, Author, course) VALUES('Explosions and Frogs','Miss Piggy','1');
 INSERT INTO Textbook (Title, Author, course) VALUES('-_-','Weeb','8');
-INSERT INTO Inventory VALUES('Secrets To Memes','99.99','Take it or beat it',
+INSERT INTO Inventory VALUES('Secrets To Memes','99.99','New',
 'huh','1');
