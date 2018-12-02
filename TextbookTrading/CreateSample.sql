@@ -1,3 +1,5 @@
+use umdlocalhackday2;
+
 INSERT INTO Person (Email,PassW,UserName) VALUES('hubba@lul','test','weebLord');
 INSERT INTO Courses VALUES('MATH','141','1');
 INSERT INTO Courses VALUES('Life','101S','5');

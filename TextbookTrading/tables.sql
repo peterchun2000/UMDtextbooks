@@ -1,3 +1,8 @@
+drop database if exists umdlocalhackday2;
+create database if not exists umdlocalhackday2;
+
+use umdlocalhackday2;
+
 CREATE TABLE Person (
 	UserID INT PRIMARY KEY auto_increment,
     Email VARCHAR(100) NOT NULL UNIQUE,

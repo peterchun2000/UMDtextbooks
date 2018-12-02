@@ -21,5 +21,6 @@ echo "<ul>";
 while($r=$result->fetch_assoc()['Title']) {
     echo "<li><a href='./textbook.php?book=$r'>$r</a></li>";
 }
+echo '</ul>';
 
 include './footer.php';

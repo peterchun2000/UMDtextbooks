@@ -16,7 +16,7 @@ $result = $stmt -> get_result();
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        echo "<br> Name: ". $row["title"]. " $" . $row["price"] . "<button class='button'>Button</button>" ;
+        echo "<br> Name: ". $row["title"]. " $" . $row["price"] . "<a href='messaging.php'><button>Go To Login</button></a>" ;
     }
 } else {
     echo "0 results";
