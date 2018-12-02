@@ -11,7 +11,7 @@ $conn->close();
 $r = $result->fetch_assoc();
 ?>
 
-<img src="./getPic.php?pic=<?=$r['course']?>" alt="">
+<img height=20% src="./getPic.php?pic=<?=$r['picture']?>" alt="No picture found">
 
 <?php
 include './footer.php';

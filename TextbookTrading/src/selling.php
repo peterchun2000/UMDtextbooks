@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html>
-<body>
-
 <?php
 include './header.php';
 require './connect.php';
+?>
+
+<!DOCTYPE html>
+<html>
+<body>
 
 <form action="/action_page.php">
   Condition: <input type="text" condition="fname"><br>
@@ -12,4 +13,6 @@ require './connect.php';
   <input type="submit" value="Submit">
 </form>
 
+
+</body>
 </html>
