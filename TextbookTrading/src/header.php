@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (!isset($_COOKIE['loggedIn'])) {
     setcookie('loggedIn', 0, 0, '/');
 }
