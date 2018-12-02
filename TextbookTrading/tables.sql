@@ -29,7 +29,7 @@ CREATE TABLE Inventory (
     Price DOUBLE NOT NULL,
     Wear ENUM('New','Good','Okay') NOT NULL,
     Comments VARCHAR(255),
-    Seller INT,
+    Seller INT NOT NULL,
     FOREIGN KEY (Seller) REFERENCES Person(UserID),
     FOREIGN KEY (Title) REFERENCES Textbook(Title)
 );
